@@ -19,7 +19,7 @@ public class UidPacker extends Packer implements ISendable {
         uidMessage.put("identity", 0);
         uidMessage.put("id", id);
         uidMessage.put("name", MessageTools.Base64Encode(name));
-        uidMessage.put("isSakuraMain", MessageTools.Base64Encode(config.getString("isSakuraMainWorld")));
+        uidMessage.put("sakuraSID", config.getInt("sakuraSID"));
         return uidMessage.toString();
     }
 }

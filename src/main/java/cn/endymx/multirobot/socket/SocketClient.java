@@ -40,7 +40,7 @@ public class SocketClient extends Thread{
         clientManager = OkSocket.open(client);
         plugin.getLogger().info("正在连接到服务器");
         OkSocketOptions.Builder okOptionsBuilder = new OkSocketOptions.Builder();
-        okOptionsBuilder.setPulseFrequency(plugin.config.getInt("serverPulse") * 1000);
+        okOptionsBuilder.setPulseFrequency(plugin.config.getInt("serverPulse") * 1000L);
         okOptionsBuilder.setReaderProtocol(new IReaderProtocol() {
             @Override
             public int getHeaderLength(){
@@ -76,7 +76,7 @@ public class SocketClient extends Thread{
             @Override
             public void onSocketConnectionSuccess(ConnectionInfo info, String action) {
                 plugin.getLogger().info("已连接到服务器");
-                clientManager.send(new UidPacker(plugin.config.getString("ID"), plugin.config.getString("serverName")));
+                clientManager.send(new UidPacker(plugin.config.getString("ID"), plugin.config.getString("serverName"), plugin.config));
                 OkSocket.open(info)
                         .getPulseManager()
                         .setPulseSendable(mPulseData)//只需要设置一次,下一次可以直接调用pulse()
