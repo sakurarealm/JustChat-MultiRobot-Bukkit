@@ -20,7 +20,7 @@ public class ChatPacker extends Packer implements ISendable {
         JSONObject chatMessage = new JSONObject();
         chatMessage.put("version", PackVersion);
         chatMessage.put("type", MessagePackType.CHAT);
-        chatMessage.put("world", MessageTools.Base64Encode(event.getPlayer().getWorld().getName()));
+        chatMessage.put("world", MessageTools.Base64Encode(event.getPlayer().getServer().getServerId()));
         chatMessage.put("world_display", MessageTools.Base64Encode(event.getPlayer().getWorld().getName()));
         chatMessage.put("sender", MessageTools.Base64Encode(event.getPlayer().getName()));
         HashMap<String, String> chatArray = new HashMap<>();

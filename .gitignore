@@ -10,3 +10,4 @@ buildNumber.properties
 .gradle/
 build/
 .idea/
+gradle/

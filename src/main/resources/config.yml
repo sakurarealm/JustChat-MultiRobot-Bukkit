@@ -54,3 +54,6 @@ messageFormQQ: "[%world%]<%player%> "
 
 #收到的信息在MC中是否去掉自定义颜色代码
 chatColorFormQQ: false
+
+#（绘境特供）该服务器是否为绘境主世界服务器
+isSakuraMainWorld: false
