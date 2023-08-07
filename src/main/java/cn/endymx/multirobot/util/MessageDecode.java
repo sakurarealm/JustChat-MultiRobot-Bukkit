@@ -6,6 +6,7 @@ import cn.endymx.multirobot.packer.Packer;
 import com.linkedin.urls.Url;
 import com.linkedin.urls.detection.UrlDetector;
 import com.linkedin.urls.detection.UrlDetectorOptions;
+import net.kyori.adventure.platform.facet.Facet;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -14,6 +15,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import javax.xml.soap.Text;
 import java.net.*;
 import java.util.List;
 
@@ -48,8 +50,12 @@ public class MessageDecode {
                     case MessagePackType.UID: break;
                     case MessagePackType.CHAT:
                         String world = MessageTools.Base64Decode(json.getString("world_display"));
-                        String sender = MessageTools.Base64Decode(json.getString("sender"));
-                        TextComponent bc = new TextComponent(plugin.config.getString("messageFormQQ").replace("%world%", world).replace("%player%", sender));
+                        JSONObject sender = json.getJSONObject("sender");
+                        String name = MessageTools.Base64Decode(sender.getString("name"));
+                        String title = MessageTools.Base64Decode(sender.getString("title"));
+                        TextComponent li = new TextComponent(title);
+                        TextComponent bc = new TextComponent(plugin.config.getString("messageFormQQ").replace("%world%", world).replace("%player%", name));
+                        bc.setColor(ChatColor.GRAY);
                         JSONArray mjson = json.getJSONArray("content");
                         for (int i = 0; i < mjson.length(); i++) {
                             JSONObject msg = mjson.getJSONObject(i);
@@ -106,12 +112,12 @@ public class MessageDecode {
                         }
                         plugin.getLogger().info(bc.toPlainText());
                         Object[] players = plugin.getServer().getOnlinePlayers().toArray();
-                        for (int i = 0; i < players.length; i++){
-                            if(plugin.qq.get(((Player)players[i]).getName()) == null || plugin.qq.get(((Player)players[i]).getName())){
-                                if(plugin.config.getBoolean("chatColorFormQQ")){
-                                    ((Player)players[i]).sendMessage(org.bukkit.ChatColor.stripColor(bc.toPlainText()));
-                                }else{
-                                    ((Player) players[i]).spigot().sendMessage(bc);
+                        for (Object player : players) {
+                            if (plugin.qq.get(((Player) player).getName()) == null || plugin.qq.get(((Player) player).getName())) {
+                                if (plugin.config.getBoolean("chatColorFormQQ")) {
+                                    ((Player) player).sendMessage(org.bukkit.ChatColor.stripColor(bc.toPlainText()));
+                                } else {
+                                    ((Player) player).spigot().sendMessage(li,bc);
                                 }
                             }
                         }

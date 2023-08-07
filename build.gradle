@@ -25,6 +25,7 @@ repositories {
      maven { url "https://repo.maven.apache.org/maven2" }
      maven { url "https://papermc.io/repo/repository/maven-public/" }
      maven { url "https://oss.sonatype.org/content/groups/public/" }
+     maven { url "https://repo.extendedclip.com/content/repositories/placeholderapi/" }
 }
 
 dependencies {
@@ -34,6 +35,7 @@ dependencies {
     compile group: 'com.tonystark.android', name: 'socket-common-interface', version:'4.2.3'
     compile group: 'com.tonystark.android', name: 'socket-core', version:'4.2.3'
     compile group: 'com.linkedin.urls', name: 'url-detector', version:'0.1.17'
+    compile group: 'me.clip', name: 'placeholderapi', version: '2.11.3'
     compile files('libs/VexView2.0.3.jar')
 }
 

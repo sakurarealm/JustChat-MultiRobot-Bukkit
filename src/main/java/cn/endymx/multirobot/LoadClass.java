@@ -61,12 +61,13 @@ public class LoadClass extends JavaPlugin implements Listener{
     }
 
     public void onDisable() {
+        client.clientManager.disconnect();
         getLogger().info("关闭中...");
     }
 
     @EventHandler
     public void onChat(AsyncPlayerChatEvent event){
-        if (!event.getPlayer().hasPermission("multirobot.forward.chat")) return;
+        // if (!event.getPlayer().hasPermission("multirobot.forward.chat")) return;
         client.clientManager.send(new ChatPacker(event));
     }
 
