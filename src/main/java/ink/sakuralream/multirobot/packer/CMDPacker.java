@@ -1,12 +1,10 @@
-package cn.endymx.multirobot.packer;
+package ink.sakuralream.multirobot.packer;
 
-import cn.endymx.multirobot.util.MessagePackType;
-import cn.endymx.multirobot.util.MessageTools;
+import ink.sakuralream.multirobot.util.MessagePackType;
+import ink.sakuralream.multirobot.util.MessageTools;
 import com.xuhao.didi.core.iocore.interfaces.ISendable;
 import org.bukkit.entity.Player;
 import org.json.JSONObject;
-
-import java.util.Collection;
 
 public class CMDPacker extends Packer implements ISendable {
 

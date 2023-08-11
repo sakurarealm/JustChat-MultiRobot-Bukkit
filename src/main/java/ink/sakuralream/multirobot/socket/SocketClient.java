@@ -1,12 +1,12 @@
-package cn.endymx.multirobot.socket;
+package ink.sakuralream.multirobot.socket;
 
-import cn.endymx.multirobot.LoadClass;
+import ink.sakuralream.multirobot.LoadClass;
 
-import cn.endymx.multirobot.packer.Packer;
-import cn.endymx.multirobot.packer.PingPacker;
-import cn.endymx.multirobot.packer.UidPacker;
-import cn.endymx.multirobot.util.MessageDecode;
-import cn.endymx.multirobot.util.MessageTools;
+import ink.sakuralream.multirobot.packer.Packer;
+import ink.sakuralream.multirobot.packer.PingPacker;
+import ink.sakuralream.multirobot.packer.UidPacker;
+import ink.sakuralream.multirobot.util.MessageDecode;
+import ink.sakuralream.multirobot.util.MessageTools;
 import com.xuhao.didi.core.pojo.OriginalData;
 import com.xuhao.didi.core.protocol.IReaderProtocol;
 import com.xuhao.didi.socket.client.sdk.OkSocket;
@@ -27,6 +27,27 @@ public class SocketClient extends Thread{
     public ConnectionInfo client;
     public IConnectionManager clientManager;
     private final PingPacker mPulseData = new PingPacker();
+
+    private SocketActionAdapter mat = new SocketActionAdapter(){
+        @Override
+        public void onSocketConnectionSuccess(ConnectionInfo info, String action) {
+            plugin.getLogger().info("已连接到服务器");
+            clientManager.send(new UidPacker(plugin.config.getString("ID"), plugin.config.getString("serverName"), plugin.config));
+            OkSocket.open(info)
+                    .getPulseManager()
+                    .setPulseSendable(mPulseData)//只需要设置一次,下一次可以直接调用pulse()
+                    .pulse();//开始心跳,开始心跳后,心跳管理器会自动进行心跳触发
+        }
+
+        @Override
+        public void onSocketReadResponse(ConnectionInfo info, String action, OriginalData data) {
+            //遵循以上规则,这个回调才可以正常收到服务器返回的数据,数据在OriginalData中,为byte[]数组,该数组数据已经处理过字节序问题,直接放入ByteBuffer中即可使用
+            if (Packer.isMessage(data.getHeadBytes())){
+                String str = new String (data.getBodyBytes(), Charset.forName(MessageTools.getEncode()));
+                new MessageDecode(str, plugin).decodeData();
+            }
+        }
+    };
 
     public SocketClient(String host, int port, LoadClass plugin) {
         this.port = port;
@@ -72,26 +93,13 @@ public class SocketClient extends Thread{
         //将新的修改后的参配设置给连接管理器
         clientManager.option(okOptionsBuilder.build());
         //注册Socket行为监听器,SocketActionAdapter是回调的Simple类,其他回调方法请参阅类文档
-        clientManager.registerReceiver(new SocketActionAdapter(){
-            @Override
-            public void onSocketConnectionSuccess(ConnectionInfo info, String action) {
-                plugin.getLogger().info("已连接到服务器");
-                clientManager.send(new UidPacker(plugin.config.getString("ID"), plugin.config.getString("serverName"), plugin.config));
-                OkSocket.open(info)
-                        .getPulseManager()
-                        .setPulseSendable(mPulseData)//只需要设置一次,下一次可以直接调用pulse()
-                        .pulse();//开始心跳,开始心跳后,心跳管理器会自动进行心跳触发
-            }
-
-            @Override
-            public void onSocketReadResponse(ConnectionInfo info, String action, OriginalData data) {
-                //遵循以上规则,这个回调才可以正常收到服务器返回的数据,数据在OriginalData中,为byte[]数组,该数组数据已经处理过字节序问题,直接放入ByteBuffer中即可使用
-                if (Packer.isMessage(data.getHeadBytes())){
-                    String str = new String (data.getBodyBytes(), Charset.forName(MessageTools.getEncode()));
-                    new MessageDecode(str, plugin).decodeData();
-                }
-            }
-        });
+        clientManager.registerReceiver(mat);
         clientManager.connect();
+    }
+
+    public void destroyClient(){
+        clientManager.disconnect();
+        clientManager.unRegisterReceiver(mat);
+        this.interrupt();
     }
 }

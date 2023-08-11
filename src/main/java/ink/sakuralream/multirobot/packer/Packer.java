@@ -1,6 +1,6 @@
-package cn.endymx.multirobot.packer;
+package ink.sakuralream.multirobot.packer;
 
-import cn.endymx.multirobot.util.MessageTools;
+import ink.sakuralream.multirobot.util.MessageTools;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;

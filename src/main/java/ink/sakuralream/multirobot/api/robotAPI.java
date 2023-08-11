@@ -1,7 +1,7 @@
-package cn.endymx.multirobot.api;
+package ink.sakuralream.multirobot.api;
 
-import cn.endymx.multirobot.LoadClass;
-import cn.endymx.multirobot.socket.SocketClient;
+import ink.sakuralream.multirobot.LoadClass;
+import ink.sakuralream.multirobot.socket.SocketClient;
 
 public class robotAPI {
 

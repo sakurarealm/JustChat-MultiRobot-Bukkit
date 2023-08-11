@@ -1,4 +1,4 @@
-package cn.endymx.multirobot.util;
+package ink.sakuralream.multirobot.util;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;

@@ -1,4 +1,4 @@
-package cn.endymx.multirobot.util;
+package ink.sakuralream.multirobot.util;
 
 
 public class MessagePackType {

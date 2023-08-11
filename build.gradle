@@ -6,10 +6,10 @@ plugins {
 apply plugin: 'java'
 apply plugin: 'maven'
 
-group = 'cn.endymx'
-version = '2.0.1'
+group = 'ink.sakurarealm'
+version = '2.1.0'
 
-description = """MultiRobot"""
+description = """MultiRobot Customed by SakuraRealm"""
 
 sourceCompatibility = 8
 targetCompatibility = 8

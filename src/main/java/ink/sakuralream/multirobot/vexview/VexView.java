@@ -1,6 +1,6 @@
-package cn.endymx.multirobot.vexview;
+package ink.sakuralream.multirobot.vexview;
 
-import cn.endymx.multirobot.LoadClass;
+import ink.sakuralream.multirobot.LoadClass;
 import lk.vexview.api.VexViewAPI;
 import lk.vexview.gui.components.expand.VexGifImage;
 import lk.vexview.hud.VexImageShow;

@@ -1,6 +1,6 @@
-package cn.endymx.multirobot.packer;
+package ink.sakuralream.multirobot.packer;
 
-import cn.endymx.multirobot.util.MessagePackType;
+import ink.sakuralream.multirobot.util.MessagePackType;
 import com.xuhao.didi.core.iocore.interfaces.IPulseSendable;
 import org.json.JSONObject;
 

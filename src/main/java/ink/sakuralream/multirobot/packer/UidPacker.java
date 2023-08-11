@@ -1,7 +1,7 @@
-package cn.endymx.multirobot.packer;
+package ink.sakuralream.multirobot.packer;
 
-import cn.endymx.multirobot.util.MessagePackType;
-import cn.endymx.multirobot.util.MessageTools;
+import ink.sakuralream.multirobot.util.MessagePackType;
+import ink.sakuralream.multirobot.util.MessageTools;
 import com.xuhao.didi.core.iocore.interfaces.ISendable;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.json.JSONObject;

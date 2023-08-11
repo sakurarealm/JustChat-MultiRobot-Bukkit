@@ -1,12 +1,11 @@
-package cn.endymx.multirobot;
+package ink.sakuralream.multirobot;
 
-import cn.endymx.multirobot.api.robotAPI;
-import cn.endymx.multirobot.packer.ChatPacker;
-import cn.endymx.multirobot.packer.InfoPacker;
-import cn.endymx.multirobot.socket.SocketClient;
+import ink.sakuralream.multirobot.api.robotAPI;
+import ink.sakuralream.multirobot.packer.ChatPacker;
+import ink.sakuralream.multirobot.packer.InfoPacker;
+import ink.sakuralream.multirobot.socket.SocketClient;
 
-import cn.endymx.multirobot.util.MessagePackType;
-import cn.endymx.multirobot.vexview.VexView;
+import ink.sakuralream.multirobot.util.MessagePackType;
 import org.bukkit.Color;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -57,12 +56,17 @@ public class LoadClass extends JavaPlugin implements Listener{
         }else{
             getLogger().info("未检测到VexView插件|VexView插件非最新版，已关闭显示图片功能");
         }*/
-        getLogger().info("欢迎使用本插件，当前版本v2.0.0");
+        getLogger().info("欢迎使用本插件，当前版本v2.1.0");
     }
 
     public void onDisable() {
-        client.clientManager.disconnect();
-        getLogger().info("关闭中...");
+        try{
+            getLogger().info("关闭中...");
+            client.destroyClient();
+            getLogger().info("关闭成功！");
+        }catch(Error e){
+            getLogger().warning(e.toString());
+        }
     }
 
     @EventHandler
