@@ -1,4 +1,4 @@
-package ink.sakuralream.multirobot.util;
+package ink.sakurarealm.multirobot.util;
 
 
 public class MessagePackType {

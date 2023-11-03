@@ -1,7 +1,7 @@
-package ink.sakuralream.multirobot.api;
+package ink.sakurarealm.multirobot.api;
 
-import ink.sakuralream.multirobot.LoadClass;
-import ink.sakuralream.multirobot.socket.SocketClient;
+import ink.sakurarealm.multirobot.LoadClass;
+import ink.sakurarealm.multirobot.socket.SocketClient;
 
 public class robotAPI {
 

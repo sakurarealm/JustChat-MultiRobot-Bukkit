@@ -1,9 +1,10 @@
-package ink.sakuralream.multirobot.packer;
+package ink.sakurarealm.multirobot.packer;
 
-import ink.sakuralream.multirobot.util.MessagePackType;
-import ink.sakuralream.multirobot.util.MessageTools;
+import ink.sakurarealm.multirobot.util.MessagePackType;
+import ink.sakurarealm.multirobot.util.MessageTools;
 import com.xuhao.didi.core.iocore.interfaces.ISendable;
 import me.clip.placeholderapi.PlaceholderAPI;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.json.JSONArray;
@@ -27,7 +28,11 @@ public class ChatPacker extends Packer implements ISendable {
         JSONObject sender = new JSONObject();
         sender.put("name", MessageTools.Base64Encode(event.getPlayer().getName()));
         sender.put("uuid", MessageTools.Base64Encode(event.getPlayer().getUniqueId().toString()));
-        sender.put("title", MessageTools.Base64Encode(PlaceholderAPI.setPlaceholders(event.getPlayer(), "%playerTitle_use%")));
+        if(Bukkit.getServer().getPluginManager().getPlugin("PlaceholderAPI") != null){
+            sender.put("title", MessageTools.Base64Encode(PlaceholderAPI.setPlaceholders(event.getPlayer(), "%playerTitle_use%")));
+        } else {
+            sender.put("title", MessageTools.Base64Encode("null"));
+        }
         chatMessage.put("sender", sender);
         // chatMessage.put("title", PlayerTitleApi.getInstance().findByPlayerNameAndIsUse(event.getPlayer()).getTitleName());
         HashMap<String, String> chatArray = new HashMap<>();

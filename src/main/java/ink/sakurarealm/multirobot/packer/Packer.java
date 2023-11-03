@@ -1,6 +1,6 @@
-package ink.sakuralream.multirobot.packer;
+package ink.sakurarealm.multirobot.packer;
 
-import ink.sakuralream.multirobot.util.MessageTools;
+import ink.sakurarealm.multirobot.util.MessageTools;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;

@@ -1,4 +1,4 @@
-package ink.sakuralream.multirobot.util;
+package ink.sakurarealm.multirobot.util;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;

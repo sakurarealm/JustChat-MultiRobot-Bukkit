@@ -1,11 +1,11 @@
-package ink.sakuralream.multirobot;
+package ink.sakurarealm.multirobot;
 
-import ink.sakuralream.multirobot.api.robotAPI;
-import ink.sakuralream.multirobot.packer.ChatPacker;
-import ink.sakuralream.multirobot.packer.InfoPacker;
-import ink.sakuralream.multirobot.socket.SocketClient;
+import ink.sakurarealm.multirobot.api.robotAPI;
+import ink.sakurarealm.multirobot.packer.ChatPacker;
+import ink.sakurarealm.multirobot.packer.InfoPacker;
+import ink.sakurarealm.multirobot.socket.SocketClient;
 
-import ink.sakuralream.multirobot.util.MessagePackType;
+import ink.sakurarealm.multirobot.util.MessagePackType;
 import org.bukkit.Color;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;

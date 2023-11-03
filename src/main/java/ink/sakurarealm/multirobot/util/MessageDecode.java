@@ -1,8 +1,8 @@
-package ink.sakuralream.multirobot.util;
+package ink.sakurarealm.multirobot.util;
 
-import ink.sakuralream.multirobot.LoadClass;
-import ink.sakuralream.multirobot.packer.CMDPacker;
-import ink.sakuralream.multirobot.packer.Packer;
+import ink.sakurarealm.multirobot.LoadClass;
+import ink.sakurarealm.multirobot.packer.CMDPacker;
+import ink.sakurarealm.multirobot.packer.Packer;
 import com.linkedin.urls.Url;
 import com.linkedin.urls.detection.UrlDetector;
 import com.linkedin.urls.detection.UrlDetectorOptions;
@@ -51,7 +51,7 @@ public class MessageDecode {
                         JSONObject sender = json.getJSONObject("sender");
                         String name = MessageTools.Base64Decode(sender.getString("name"));
                         String title = MessageTools.Base64Decode(sender.getString("title"));
-                        TextComponent li = new TextComponent(title);
+                        TextComponent li = new TextComponent(title.equals("null") ?"":title+" ");
                         TextComponent bc = new TextComponent(plugin.config.getString("messageFormQQ").replace("%world%", world).replace("%player%", name));
                         bc.setColor(ChatColor.GRAY);
                         JSONArray mjson = json.getJSONArray("content");

@@ -1,12 +1,12 @@
-package ink.sakuralream.multirobot.socket;
+package ink.sakurarealm.multirobot.socket;
 
-import ink.sakuralream.multirobot.LoadClass;
+import ink.sakurarealm.multirobot.LoadClass;
 
-import ink.sakuralream.multirobot.packer.Packer;
-import ink.sakuralream.multirobot.packer.PingPacker;
-import ink.sakuralream.multirobot.packer.UidPacker;
-import ink.sakuralream.multirobot.util.MessageDecode;
-import ink.sakuralream.multirobot.util.MessageTools;
+import ink.sakurarealm.multirobot.packer.Packer;
+import ink.sakurarealm.multirobot.packer.PingPacker;
+import ink.sakurarealm.multirobot.packer.UidPacker;
+import ink.sakurarealm.multirobot.util.MessageDecode;
+import ink.sakurarealm.multirobot.util.MessageTools;
 import com.xuhao.didi.core.pojo.OriginalData;
 import com.xuhao.didi.core.protocol.IReaderProtocol;
 import com.xuhao.didi.socket.client.sdk.OkSocket;
@@ -98,8 +98,11 @@ public class SocketClient extends Thread{
     }
 
     public void destroyClient(){
-        clientManager.disconnect();
         clientManager.unRegisterReceiver(mat);
+        System.gc();
+        clientManager.disconnect();
+        clientManager = null;
+        System.gc();
         this.interrupt();
     }
 }

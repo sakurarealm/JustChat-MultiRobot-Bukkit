@@ -1,6 +1,6 @@
-package ink.sakuralream.multirobot.packer;
+package ink.sakurarealm.multirobot.packer;
 
-import ink.sakuralream.multirobot.util.MessagePackType;
+import ink.sakurarealm.multirobot.util.MessagePackType;
 import com.xuhao.didi.core.iocore.interfaces.IPulseSendable;
 import org.json.JSONObject;
 

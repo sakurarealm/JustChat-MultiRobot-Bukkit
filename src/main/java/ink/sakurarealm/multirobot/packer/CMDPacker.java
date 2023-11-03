@@ -1,7 +1,7 @@
-package ink.sakuralream.multirobot.packer;
+package ink.sakurarealm.multirobot.packer;
 
-import ink.sakuralream.multirobot.util.MessagePackType;
-import ink.sakuralream.multirobot.util.MessageTools;
+import ink.sakurarealm.multirobot.util.MessagePackType;
+import ink.sakurarealm.multirobot.util.MessageTools;
 import com.xuhao.didi.core.iocore.interfaces.ISendable;
 import org.bukkit.entity.Player;
 import org.json.JSONObject;
